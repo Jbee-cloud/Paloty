@@ -1,0 +1,22 @@
+{
+    "name": "Paloty Hair",
+    "short_name": "Paloty",
+    "description": "Premium wigs and hair extensions. Fast delivery in Anambra and nationwide.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "Assets/Logo/Logo.jpeg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "Assets/Logo/Logo.jpeg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Paloty Hair - Premium wigs and hair extensions. Fast delivery in Anambra and nationwide.">
+    <title>Paloty Hair - Premium Wigs & Hair Extensions</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Logo/Logo.jpeg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Page Loader -->
+    <div id="pageLoader" class="page-loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Paloty Hair</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-icon" id="cartIconBtn" role="button" tabindex="0" aria-label="Shopping cart">
+                <!-- Cart icon SVG -->
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path d="M6 6h15l-1.4 7H8.4L6 6z" stroke="#fff" stroke-width="1.2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="10" cy="19" r="1" fill="#fff" />
+                    <circle cx="18" cy="19" r="1" fill="#fff" />
+                </svg>
+                <!-- Cart count badge -->
+                <svg id="cartCount" class="cart-count" width="26" height="26" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cart items count">
+                    <circle cx="12" cy="12" r="11" fill="#f44336" />
+                    <text id="cartCountText" x="12" y="15" text-anchor="middle" font-size="10" font-weight="700"
+                        fill="#fff">0</text>
+                </svg>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Decorative blurred logo background -->
+        <img src="Assets/Logo/Logo.jpeg" alt="Paloty Hair logo" class="hero-logo" loading="lazy">
+        <div class="container">
+            <div class="hero-inner">
+                <h1>Premium Wigs & Hair</h1>
+                <p>..Fast delivery in Anambra & nationwide..</p>
+                <button class="cta-btn" id="shopNowBtn">Shop Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Collection</h2>
+            <div class="search-filter">
+                <input type="text" id="searchInput" placeholder="Search products..." class="search-input">
+                <select id="sortSelect" class="sort-select">
+                    <option value="default">Sort by: Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A to Z</option>
+                </select>
+                <div class="price-range">
+                    <input type="number" id="minPrice" placeholder="Min ₦" class="price-input">
+                    <span>to</span>
+                    <input type="number" id="maxPrice" placeholder="Max ₦" class="price-input">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="straight">Straight</button>
+                    <button class="filter-btn" data-filter="wave">Wave</button>
+                    <button class="filter-btn" data-filter="lace">Lace</button>
+                    <button class="filter-btn" data-filter="curly">Curly</button>
+                    <button class="filter-btn" data-filter="volume">Volume</button>
+                    <button class="filter-btn" data-filter="star">Star</button>
+                    <button class="filter-btn" data-filter="heart">Heart</button>
+                    <button class="filter-btn" data-filter="princess">Princess</button>
+                </div>
+            </div>
+            <div class="product-grid" id="productGrid">
+                <!-- Products loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="cart-modal" role="dialog" aria-labelledby="cartHeader">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3 id="cartHeader">Your Cart</h3>
+                <span class="close-cart" id="closeCartBtn" role="button" tabindex="0"
+                    aria-label="Close cart">&times;</span>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">Total: ₦0</div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Your order has been submitted. We'll contact you shortly via WhatsApp to confirm details and arrange
+                delivery.</p>
+            <button id="successCloseBtn" class="success-btn">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="welcome-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="welcome-content">
+            <div class="welcome-header">
+                <h2>Welcome to Paloty Hair! </h2>
+                <span class="welcome-close" id="welcomeCloseBtn" role="button" tabindex="0"
+                    aria-label="Close welcome">&times;</span>
+            </div>
+            <div class="welcome-body">
+                <p>Discover premium wigs and hair extensions with fast delivery across Anambra and Nigeria.</p>
+                <ul>
+                    <li>High-quality, natural-looking hair</li>
+                    <li>Easy ordering via WhatsApp</li>
+                    <li>Secure checkout and quick support</li>
+                </ul>
+                <p>Start shopping now!</p>
+            </div>
+            <button id="welcomeStartBtn" class="welcome-btn">Shop Now</button>
+        </div>
+    </div>
+
+    <!-- Quick View Overlay -->
+    <div id="quickViewOverlay" class="quick-view-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="quick-view-content">
+            <button id="quickViewClose" class="quick-view-close" aria-label="Close quick view">×</button>
+            <div id="quickViewBody" class="quick-view-body"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Shop</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><a href="tel:+2349160660773">+234 916 066 0773</a></li>
+                        <li><a href="mailto:hello@palotyhair.com">hello@palotyhair.com</a></li>
+                        <li>Anambra, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Paloty Hair Fundz NG. Anambra state. Premium hair, perfect style.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2349160660773?text=Hi%20Paloty%20Hair%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products"
+        target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat with us on WhatsApp"
+        title="Chat on WhatsApp">
+        <img src="Assets/icon.jpg" alt="WhatsApp" width="45" height="45" style="object-fit: contain;">
+    </a>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
